@@ -17,5 +17,8 @@ $(document).ready(function(){
 		if(aim=='service'){
 			location.href="../service/toList.do";
 		}
+		if(aim=='bill'){
+			location.href="../bill/toList.do";
+		}
 	});
 });

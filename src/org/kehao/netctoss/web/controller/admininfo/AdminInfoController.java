@@ -23,7 +23,7 @@ public class AdminInfoController implements Serializable{
 
 	@RequestMapping("/getListByPage.do")
 	@ResponseBody
-	public NetCtossResult getAccountListByPage(int page,Integer pageSize){
+	public NetCtossResult getAdminInfoListByPage(int page,Integer pageSize){
 		return adminInfoService.findAdminInfoByPage(page, pageSize);
 	}
 }

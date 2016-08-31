@@ -103,4 +103,14 @@
       PAY_STATE = #{payState,jdbcType=CHAR}
     where BILL_ID = #{billId,jdbcType=DECIMAL}
   </update>
+  <select id="selectBillByPage" resultMap="BaseResultMap">
+  	select * from (
+  		select rownum rn,a.* from(
+  			select * from bill
+  		) a order by bill_id
+  	) where rn between #{0} and #{1}
+  </select>
+  <select id="selectBillCount" resultType="int">
+  	select count(*) from bill
+  </select>
 </mapper>
