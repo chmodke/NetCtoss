@@ -267,4 +267,14 @@
       LAST_LOGIN_IP = #{lastLoginIp,jdbcType=VARCHAR}
     where ACCOUNT_ID = #{accountId,jdbcType=DECIMAL}
   </update>
+  <select id="selectAccountByPage" resultMap="BaseResultMap">
+  	select * from(
+  		select rownum rn ,a.* from (
+  			select * from account order by account_id
+  		) a
+  	)where rn between #{0} and #{1}
+  </select>
+  <select id="selectAccountCount" resultType="int">
+	select count(*) from account
+  </select>
 </mapper>

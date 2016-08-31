@@ -10,12 +10,13 @@
 	href="../styles/global.css" />
 <link type="text/css" rel="stylesheet" media="all"
 	href="../styles/global_color.css" />
+
 <script type="text/javascript" src="../scripts/base64.js"></script>
 <script type="text/javascript" src="../scripts/jquery.min.js"></script>
 <script type="text/javascript" src="../scripts/cookie_util.js"></script>
 <script type="text/javascript" src="../scripts/DateFormat.js"></script>
 <script type="text/javascript" src="../scripts/menu.js"></script>
-<script type="text/javascript" src="../scripts/fee.js"></script>
+<script type="text/javascript" src="../scripts/account.js"></script>
 </head>
 <body>
 	<!--Logo区域开始-->
@@ -29,8 +30,8 @@
 			<li><a id="index" href="javascript:;" class="index_off"></a></li>
 			<li><a id="role" href="javascript:;" class="role_off"></a></li>
 			<li><a id="admin" href="javascript:;" class="admin_off"></a></li>
-			<li><a id="cost" href="javascript:;" class="fee_on"></a></li>
-			<li><a id="account" href="javascript:;" class="account_off"></a></li>
+			<li><a id="cost" href="javascript:;" class="fee_off"></a></li>
+			<li><a id="account" href="javascript:;" class="account_on"></a></li>
 			<li><a id="service" href="javascript:;" class="service_off"></a></li>
 			<li><a id="bill" href="javascript:;" class="bill_off"></a></li>
 			<li><a id="report" href="javascript:;" class="report_off"></a></li>
@@ -42,51 +43,70 @@
 	<!--主要区域开始-->
 	<div id="main">
 		<form action="" method="">
-			<!--排序-->
+			<!--查询-->
 			<div class="search_add">
 				<div>
-					<!--<input type="button" value="月租" class="sort_asc" onclick="sort(this);" />-->
-					<input type="button" value="基费" class="sort_asc"
-						onclick="sort(this);" /> <input type="button" value="时长"
-						class="sort_asc" onclick="sort(this);" />
+					身份证：<input type="text" value="不验证" class="text_search" />
+				</div>
+				<div>
+					姓名：<input type="text" class="width70 text_search" value="不验证" />
+				</div>
+				<div>
+					登录名：<input type="text" value="不验证" class="text_search" " />
+				</div>
+				<div>
+					状态： <select class="select_search">
+						<option>全部</option>
+						<option>开通</option>
+						<option>暂停</option>
+						<option>删除</option>
+					</select>
+				</div>
+				<div>
+					<input type="button" value="搜索" class="btn_search" />
 				</div>
 				<input type="button" value="增加" class="btn_add"
-					onclick="location.href='fee_add.html';" />
+					onclick="location.href='account_add.html';" />
 			</div>
-			<!--启用操作的操作提示-->
+			<!--删除等的操作提示-->
 			<div id="operate_result_info" class="operate_success">
 				<img src="../images/close.png"
-					onclick="this.parentNode.style.display='none';" /> 删除成功！
+					onclick="this.parentNode.style.display='none';" />
+				删除成功，且已删除其下属的业务账号！
 			</div>
 			<!--数据区域：用表格展示数据-->
 			<div id="data">
 				<table id="datalist">
 					<thead>
 						<tr>
-							<th>资费ID</th>
-							<th class="width100">资费名称</th>
-							<th>基本时长</th>
-							<th>基本费用</th>
-							<th>单位费用</th>
-							<th>创建时间</th>
-							<th>开通时间</th>
-							<th class="width50">状态</th>
-							<th class="width200">操作</th>
+							<th>账号ID</th>
+							<th>姓名</th>
+							<th class="width150">身份证</th>
+							<th>登录名</th>
+							<th>状态</th>
+							<th class="width100">创建日期</th>
+							<th class="width150">上次登录时间</th>
+							<th class="width200"></th>
 						</tr>
 					</thead>
 					<tbody>
-
+						
 					</tbody>
+					
 				</table>
 				<p>
-					业务说明：<br /> 1、创建资费时，状态为暂停，记载创建时间；<br /> 2、暂停状态下，可修改，可删除；<br />
-					3、开通后，记载开通时间，且开通后不能修改、不能再停用、也不能删除；<br />
-					4、业务账号修改资费时，在下月底统一触发，修改其关联的资费ID（此触发动作由程序处理）
+					业务说明：<br /> 1、创建则开通，记载创建时间；<br /> 2、暂停后，记载暂停时间；<br />
+					3、重新开通后，删除暂停时间；<br /> 4、删除后，记载删除时间，标示为删除，不能再开通、修改、删除；<br />
+					5、暂停账务账号，同时暂停下属的所有业务账号；<br />
+					6、暂停后重新开通账务账号，并不同时开启下属的所有业务账号，需要在业务账号管理中单独开启；<br />
+					7、删除账务账号，同时删除下属的所有业务账号。
 				</p>
 			</div>
 			<!--分页-->
 			<div id="pages">
-				
+				<a href="#">首页</a> <a href="#">上一页</a> <a href="#"
+					class="current_page">1</a> <a href="#">2</a> <a href="#">3</a> <a
+					href="#">4</a> <a href="#">5</a> <a href="#">下一页</a> <a href="#">末页</a>
 			</div>
 		</form>
 	</div>

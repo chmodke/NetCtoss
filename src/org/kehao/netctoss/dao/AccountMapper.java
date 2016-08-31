@@ -1,5 +1,7 @@
 package org.kehao.netctoss.dao;
 
+import java.util.List;
+
 import org.kehao.netctoss.model.Account;
 
 public interface AccountMapper {
@@ -14,4 +16,7 @@ public interface AccountMapper {
     int updateByPrimaryKeySelective(Account record);
 
     int updateByPrimaryKey(Account record);
+    
+    List<Account> selectAccountByPage(int start,int end);
+    int selectAccountCount();
 }

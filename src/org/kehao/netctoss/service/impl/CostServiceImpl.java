@@ -24,7 +24,7 @@ public class CostServiceImpl implements CostService {
 		NetCtossResult result = new NetCtossResult();
 		pageSize=(pageSize==null?5:pageSize);
 		result.setData(costMapper.selectCostByPage(((page-1)*pageSize)+1, page*pageSize));
-		int pageCont=(costMapper.selectCostCount())/5;
+		int pageCont=(costMapper.selectCostCount())/pageSize;
 		result.setMsg("已获取:"+(int)Math.floor(pageCont+1));
 		result.setStatus(0);
 		return result;
