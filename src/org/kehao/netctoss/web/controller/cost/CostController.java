@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/cost")
-public class CostListController {
+public class CostController {
 	@Autowired
 	CostService costService;
 	

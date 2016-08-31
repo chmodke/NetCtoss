@@ -36,21 +36,23 @@ function loadlist(p) {
 					$("#datalist tbody").append(str);
 				}
 				var pageConts=result.msg.split(":")[1];//获取到页数
+				$("#pages").append('<a id="'+1+'" href="javascript:;">首页</a>');
 				$("#pages").append('<a id="'+(p==1?1:(p-1))+'" href="javascript:;">上一页</a>');
 				for(var j=pageConts;j>0;j--){
 					if(p==j){
 //						var $str1=$('<a id="'+j+'" class="current_page" href="javascript:;">'+j+'</a>');
-						$("#pages a").eq(0).after('<a id="'+j+'" class="current_page" href="javascript:;">'+j+'</a>');
+						$("#pages a").eq(1).after('<a id="'+j+'" class="current_page" href="javascript:;">'+j+'</a>');
 					}else{
 //						var $str2=$('<a id="'+j+'" href="javascript:;">'+j+'</a>');
-						$("#pages a").eq(0).after('<a id="'+j+'" href="javascript:;">'+j+'</a>');
+						$("#pages a").eq(1).after('<a id="'+j+'" href="javascript:;">'+j+'</a>');
 					}
 				}
 				$("#pages").append('<a id="'+(p==pageConts?pageConts:(p-(-1)))+'" href="javascript:;">下一页</a>');
+				$("#pages").append('<a id="'+pageConts+'" href="javascript:;">末页</a>');
 			}
 		},
 		error : function() {
-			alert("获取账户异常");
+			alert("获取账务账户异常");
 		},
 		async : true
 	});

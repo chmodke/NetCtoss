@@ -1,3 +1,4 @@
+//导航栏控制JS
 $(document).ready(function(){
 	$("#menu li").click(function(event){
 		var aim=event.target.id;
@@ -9,6 +10,9 @@ $(document).ready(function(){
 		}
 		if(aim=='account'){
 			location.href="../account/toList.do";
+		}
+		if(aim=='service'){
+			location.href="../service/toList.do";
 		}
 	});
 });
