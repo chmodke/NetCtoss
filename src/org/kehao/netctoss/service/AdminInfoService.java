@@ -21,4 +21,6 @@ public interface AdminInfoService {
 	 * @return status=0成功，status=1用户名不存在，status=2密码错误
 	 */
 	public NetCtossResult checkAdminLogin(String adminCode,String adminPwd)throws UnsupportedEncodingException;
+	
+	public NetCtossResult findAdminInfoByPage(int page,Integer pageSize);
 }

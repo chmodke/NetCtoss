@@ -5,6 +5,9 @@ $(document).ready(function(){
 		if(aim=='index'){
 			location.href="../login/toIndex.do";
 		}
+		if(aim=='admin'){
+			location.href="../admin/toList.do";
+		}
 		if(aim=='cost'){
 			location.href="../cost/toList.do";
 		}

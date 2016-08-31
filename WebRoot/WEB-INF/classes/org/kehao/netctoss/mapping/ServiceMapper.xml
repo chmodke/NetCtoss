@@ -151,9 +151,9 @@
     where SERVICE_ID = #{serviceId,jdbcType=DECIMAL}
   </update>
   <select id="selectServiceByPage" resultMap="BaseResultMap">
-  	select * from (
+  	select <include refid="Base_Column_List" /> from (
   		select rownum rn,a.* from(
-  			select * from service
+  			select <include refid="Base_Column_List" /> from service
   		) a
   	) where rn between #{0} and #{1}
   </select>

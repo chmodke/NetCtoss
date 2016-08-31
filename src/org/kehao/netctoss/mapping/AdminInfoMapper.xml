@@ -122,4 +122,14 @@
       ENROLLDATE = #{enrolldate,jdbcType=TIMESTAMP}
     where ADMIN_ID = #{adminId,jdbcType=DECIMAL}
   </update>
+  <select id="selectAdminInfoByPage" resultMap="BaseResultMap" >
+  	select <include refid="Base_Column_List" /> from (
+  		select rownum rn,a.* from (
+  			select <include refid="Base_Column_List" /> from admin_info
+  		)a order by admin_id
+  	) where rn between #{0} and #{1}
+  </select>
+  <select id="selectAdminInfoCount" resultType="int">
+  	select count(*) from admin_info
+  </select>
 </mapper>

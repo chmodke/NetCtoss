@@ -268,9 +268,9 @@
     where ACCOUNT_ID = #{accountId,jdbcType=DECIMAL}
   </update>
   <select id="selectAccountByPage" resultMap="BaseResultMap">
-  	select * from(
+  	select <include refid="Base_Column_List" /> from(
   		select rownum rn ,a.* from (
-  			select * from account order by account_id
+  			select <include refid="Base_Column_List" /> from account order by account_id
   		) a
   	)where rn between #{0} and #{1}
   </select>
