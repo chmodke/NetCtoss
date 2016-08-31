@@ -19,6 +19,14 @@
     from ADMIN_INFO
     where ADMIN_ID = #{adminId,jdbcType=DECIMAL}
   </select>
+  
+  <select id="selectByAdminCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ADMIN_INFO
+    where ADMIN_CODE = #{adminCode,jdbcType=VARCHAR}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from ADMIN_INFO
     where ADMIN_ID = #{adminId,jdbcType=DECIMAL}

@@ -2,11 +2,12 @@ package org.kehao.netctoss.test.controller.admininfo;
 
 import junit.framework.Assert;
 
+import org.apache.commons.codec.binary.Base64;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kehao.netctoss.model.AdminInfo;
+import org.kehao.netctoss.model.NetCtossResult;
 import org.kehao.netctoss.web.controller.admininfo.AdminInfoLoginController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -39,11 +40,14 @@ public class AdminInfoLoginControllerTest {
 	}
 	
 	@Test
-	public void adminInfoControllerLogin() throws Exception{		
+	public void adminInfoControllerLogin() throws Exception{
+		String msg="admin"+":"+"123";
+		String base64_msg=Base64.encodeBase64String(msg.getBytes());
+		String header="Base "+base64_msg;
 		//发送执行一个HTTP请求
 		RequestBuilder request=MockMvcRequestBuilders
-		.post("/main/login.do")
-		.param("id", "2000");//传数据
+		.post("/login/checkLogin.do")
+		.header("header", header);//传数据
 		
 		MvcResult result=mockMvc.perform(request)
 		.andDo(MockMvcResultHandlers.print())//将请求头和响应头打印
@@ -55,8 +59,8 @@ public class AdminInfoLoginControllerTest {
 		System.out.println("----------------------------"+'\n'+jsonStr+'\n'+"----------------------------");
 		//将json字符串转成java对象
 		ObjectMapper mapper=new ObjectMapper();
-		AdminInfo admin=mapper.readValue(jsonStr, AdminInfo.class);
+		NetCtossResult netResult=mapper.readValue(jsonStr, NetCtossResult.class);
 		//断言
-		Assert.assertEquals("ADMIN", admin.getName());
+		Assert.assertEquals(0, netResult.getStatus().intValue());
 	}
 }

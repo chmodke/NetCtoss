@@ -90,4 +90,15 @@
 		<property name="prefix" value="/WEB-INF/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+	
+	<!-- 注册拦截器 -->
+	<mvc:interceptors>
+	<!-- 登录检查拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/login/toLogin.do"/>
+			<mvc:exclude-mapping path="/login/checkLogin.do"/>
+			<bean class="org.kehao.netctoss.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
