@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kehao.netctoss.dao.CostMapper" >
+  <resultMap id="BaseResultMap" type="org.kehao.netctoss.model.Cost" >
+    <id column="COST_ID" property="costId" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="BASE_DURATION" property="baseDuration" jdbcType="DECIMAL" />
+    <result column="BASE_COST" property="baseCost" jdbcType="DECIMAL" />
+    <result column="UNIT_COST" property="unitCost" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="DESCR" property="descr" jdbcType="VARCHAR" />
+    <result column="CREATIME" property="creatime" jdbcType="TIMESTAMP" />
+    <result column="STARTIME" property="startime" jdbcType="TIMESTAMP" />
+    <result column="COST_TYPE" property="costType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COST_ID, NAME, BASE_DURATION, BASE_COST, UNIT_COST, STATUS, DESCR, CREATIME, STARTIME, 
+    COST_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from COST
+    where COST_ID = #{costId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from COST
+    where COST_ID = #{costId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="org.kehao.netctoss.model.Cost" >
+    insert into COST (COST_ID, NAME, BASE_DURATION, 
+      BASE_COST, UNIT_COST, STATUS, 
+      DESCR, CREATIME, STARTIME, 
+      COST_TYPE)
+    values (#{costId,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{baseDuration,jdbcType=DECIMAL}, 
+      #{baseCost,jdbcType=DECIMAL}, #{unitCost,jdbcType=DECIMAL}, #{status,jdbcType=CHAR}, 
+      #{descr,jdbcType=VARCHAR}, #{creatime,jdbcType=TIMESTAMP}, #{startime,jdbcType=TIMESTAMP}, 
+      #{costType,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.kehao.netctoss.model.Cost" >
+    insert into COST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="costId != null" >
+        COST_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="baseDuration != null" >
+        BASE_DURATION,
+      </if>
+      <if test="baseCost != null" >
+        BASE_COST,
+      </if>
+      <if test="unitCost != null" >
+        UNIT_COST,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="descr != null" >
+        DESCR,
+      </if>
+      <if test="creatime != null" >
+        CREATIME,
+      </if>
+      <if test="startime != null" >
+        STARTIME,
+      </if>
+      <if test="costType != null" >
+        COST_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="costId != null" >
+        #{costId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="baseDuration != null" >
+        #{baseDuration,jdbcType=DECIMAL},
+      </if>
+      <if test="baseCost != null" >
+        #{baseCost,jdbcType=DECIMAL},
+      </if>
+      <if test="unitCost != null" >
+        #{unitCost,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="creatime != null" >
+        #{creatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startime != null" >
+        #{startime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="costType != null" >
+        #{costType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.kehao.netctoss.model.Cost" >
+    update COST
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="baseDuration != null" >
+        BASE_DURATION = #{baseDuration,jdbcType=DECIMAL},
+      </if>
+      <if test="baseCost != null" >
+        BASE_COST = #{baseCost,jdbcType=DECIMAL},
+      </if>
+      <if test="unitCost != null" >
+        UNIT_COST = #{unitCost,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="descr != null" >
+        DESCR = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="creatime != null" >
+        CREATIME = #{creatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startime != null" >
+        STARTIME = #{startime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="costType != null" >
+        COST_TYPE = #{costType,jdbcType=CHAR},
+      </if>
+    </set>
+    where COST_ID = #{costId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.kehao.netctoss.model.Cost" >
+    update COST
+    set NAME = #{name,jdbcType=VARCHAR},
+      BASE_DURATION = #{baseDuration,jdbcType=DECIMAL},
+      BASE_COST = #{baseCost,jdbcType=DECIMAL},
+      UNIT_COST = #{unitCost,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=CHAR},
+      DESCR = #{descr,jdbcType=VARCHAR},
+      CREATIME = #{creatime,jdbcType=TIMESTAMP},
+      STARTIME = #{startime,jdbcType=TIMESTAMP},
+      COST_TYPE = #{costType,jdbcType=CHAR}
+    where COST_ID = #{costId,jdbcType=DECIMAL}
+  </update>
+</mapper>

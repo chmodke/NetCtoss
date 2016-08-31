@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kehao.netctoss.dao.ModuleInfoMapper" >
+  <resultMap id="BaseResultMap" type="org.kehao.netctoss.model.ModuleInfo" >
+    <id column="MODULE_ID" property="moduleId" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MODULE_ID, NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from MODULE_INFO
+    where MODULE_ID = #{moduleId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from MODULE_INFO
+    where MODULE_ID = #{moduleId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="org.kehao.netctoss.model.ModuleInfo" >
+    insert into MODULE_INFO (MODULE_ID, NAME)
+    values (#{moduleId,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.kehao.netctoss.model.ModuleInfo" >
+    insert into MODULE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="moduleId != null" >
+        MODULE_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="moduleId != null" >
+        #{moduleId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.kehao.netctoss.model.ModuleInfo" >
+    update MODULE_INFO
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MODULE_ID = #{moduleId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.kehao.netctoss.model.ModuleInfo" >
+    update MODULE_INFO
+    set NAME = #{name,jdbcType=VARCHAR}
+    where MODULE_ID = #{moduleId,jdbcType=DECIMAL}
+  </update>
+</mapper>

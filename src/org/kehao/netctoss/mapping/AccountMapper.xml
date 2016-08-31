@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kehao.netctoss.dao.AccountMapper" >
+  <resultMap id="BaseResultMap" type="org.kehao.netctoss.model.Account" >
+    <id column="ACCOUNT_ID" property="accountId" jdbcType="DECIMAL" />
+    <result column="RECOMMENDER_ID" property="recommenderId" jdbcType="DECIMAL" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="LOGIN_PASSWD" property="loginPasswd" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="PAUSE_DATE" property="pauseDate" jdbcType="TIMESTAMP" />
+    <result column="CLOSE_DATE" property="closeDate" jdbcType="TIMESTAMP" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="IDCARD_NO" property="idcardNo" jdbcType="CHAR" />
+    <result column="BIRTHDATE" property="birthdate" jdbcType="TIMESTAMP" />
+    <result column="GENDER" property="gender" jdbcType="CHAR" />
+    <result column="OCCUPATION" property="occupation" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="MAILADDRESS" property="mailaddress" jdbcType="VARCHAR" />
+    <result column="ZIPCODE" property="zipcode" jdbcType="CHAR" />
+    <result column="QQ" property="qq" jdbcType="VARCHAR" />
+    <result column="LAST_LOGIN_TIME" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_LOGIN_IP" property="lastLoginIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ACCOUNT_ID, RECOMMENDER_ID, LOGIN_NAME, LOGIN_PASSWD, STATUS, CREATE_DATE, PAUSE_DATE, 
+    CLOSE_DATE, REAL_NAME, IDCARD_NO, BIRTHDATE, GENDER, OCCUPATION, TELEPHONE, EMAIL, 
+    MAILADDRESS, ZIPCODE, QQ, LAST_LOGIN_TIME, LAST_LOGIN_IP
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ACCOUNT
+    where ACCOUNT_ID = #{accountId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ACCOUNT
+    where ACCOUNT_ID = #{accountId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="org.kehao.netctoss.model.Account" >
+    insert into ACCOUNT (ACCOUNT_ID, RECOMMENDER_ID, LOGIN_NAME, 
+      LOGIN_PASSWD, STATUS, CREATE_DATE, 
+      PAUSE_DATE, CLOSE_DATE, REAL_NAME, 
+      IDCARD_NO, BIRTHDATE, GENDER, 
+      OCCUPATION, TELEPHONE, EMAIL, 
+      MAILADDRESS, ZIPCODE, QQ, 
+      LAST_LOGIN_TIME, LAST_LOGIN_IP)
+    values (#{accountId,jdbcType=DECIMAL}, #{recommenderId,jdbcType=DECIMAL}, #{loginName,jdbcType=VARCHAR}, 
+      #{loginPasswd,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{pauseDate,jdbcType=TIMESTAMP}, #{closeDate,jdbcType=TIMESTAMP}, #{realName,jdbcType=VARCHAR}, 
+      #{idcardNo,jdbcType=CHAR}, #{birthdate,jdbcType=TIMESTAMP}, #{gender,jdbcType=CHAR}, 
+      #{occupation,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{mailaddress,jdbcType=VARCHAR}, #{zipcode,jdbcType=CHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.kehao.netctoss.model.Account" >
+    insert into ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="recommenderId != null" >
+        RECOMMENDER_ID,
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME,
+      </if>
+      <if test="loginPasswd != null" >
+        LOGIN_PASSWD,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="pauseDate != null" >
+        PAUSE_DATE,
+      </if>
+      <if test="closeDate != null" >
+        CLOSE_DATE,
+      </if>
+      <if test="realName != null" >
+        REAL_NAME,
+      </if>
+      <if test="idcardNo != null" >
+        IDCARD_NO,
+      </if>
+      <if test="birthdate != null" >
+        BIRTHDATE,
+      </if>
+      <if test="gender != null" >
+        GENDER,
+      </if>
+      <if test="occupation != null" >
+        OCCUPATION,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="mailaddress != null" >
+        MAILADDRESS,
+      </if>
+      <if test="zipcode != null" >
+        ZIPCODE,
+      </if>
+      <if test="qq != null" >
+        QQ,
+      </if>
+      <if test="lastLoginTime != null" >
+        LAST_LOGIN_TIME,
+      </if>
+      <if test="lastLoginIp != null" >
+        LAST_LOGIN_IP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        #{accountId,jdbcType=DECIMAL},
+      </if>
+      <if test="recommenderId != null" >
+        #{recommenderId,jdbcType=DECIMAL},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPasswd != null" >
+        #{loginPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pauseDate != null" >
+        #{pauseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closeDate != null" >
+        #{closeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardNo != null" >
+        #{idcardNo,jdbcType=CHAR},
+      </if>
+      <if test="birthdate != null" >
+        #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="occupation != null" >
+        #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mailaddress != null" >
+        #{mailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null" >
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.kehao.netctoss.model.Account" >
+    update ACCOUNT
+    <set >
+      <if test="recommenderId != null" >
+        RECOMMENDER_ID = #{recommenderId,jdbcType=DECIMAL},
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPasswd != null" >
+        LOGIN_PASSWD = #{loginPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pauseDate != null" >
+        PAUSE_DATE = #{pauseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closeDate != null" >
+        CLOSE_DATE = #{closeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realName != null" >
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardNo != null" >
+        IDCARD_NO = #{idcardNo,jdbcType=CHAR},
+      </if>
+      <if test="birthdate != null" >
+        BIRTHDATE = #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gender != null" >
+        GENDER = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="occupation != null" >
+        OCCUPATION = #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mailaddress != null" >
+        MAILADDRESS = #{mailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        ZIPCODE = #{zipcode,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null" >
+        LAST_LOGIN_IP = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ACCOUNT_ID = #{accountId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.kehao.netctoss.model.Account" >
+    update ACCOUNT
+    set RECOMMENDER_ID = #{recommenderId,jdbcType=DECIMAL},
+      LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      LOGIN_PASSWD = #{loginPasswd,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      PAUSE_DATE = #{pauseDate,jdbcType=TIMESTAMP},
+      CLOSE_DATE = #{closeDate,jdbcType=TIMESTAMP},
+      REAL_NAME = #{realName,jdbcType=VARCHAR},
+      IDCARD_NO = #{idcardNo,jdbcType=CHAR},
+      BIRTHDATE = #{birthdate,jdbcType=TIMESTAMP},
+      GENDER = #{gender,jdbcType=CHAR},
+      OCCUPATION = #{occupation,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      MAILADDRESS = #{mailaddress,jdbcType=VARCHAR},
+      ZIPCODE = #{zipcode,jdbcType=CHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP},
+      LAST_LOGIN_IP = #{lastLoginIp,jdbcType=VARCHAR}
+    where ACCOUNT_ID = #{accountId,jdbcType=DECIMAL}
+  </update>
+</mapper>

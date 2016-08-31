@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kehao.netctoss.dao.HostMapper" >
+  <resultMap id="BaseResultMap" type="org.kehao.netctoss.model.Host" >
+    <id column="HOST_ID" property="hostId" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="LOCATION" property="location" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    HOST_ID, NAME, LOCATION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from HOST
+    where HOST_ID = #{hostId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from HOST
+    where HOST_ID = #{hostId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.kehao.netctoss.model.Host" >
+    insert into HOST (HOST_ID, NAME, LOCATION
+      )
+    values (#{hostId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.kehao.netctoss.model.Host" >
+    insert into HOST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hostId != null" >
+        HOST_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="location != null" >
+        LOCATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hostId != null" >
+        #{hostId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.kehao.netctoss.model.Host" >
+    update HOST
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        LOCATION = #{location,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HOST_ID = #{hostId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.kehao.netctoss.model.Host" >
+    update HOST
+    set NAME = #{name,jdbcType=VARCHAR},
+      LOCATION = #{location,jdbcType=VARCHAR}
+    where HOST_ID = #{hostId,jdbcType=VARCHAR}
+  </update>
+</mapper>

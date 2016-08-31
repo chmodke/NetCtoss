@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kehao.netctoss.dao.RoleModuleMapper" >
+  <resultMap id="BaseResultMap" type="org.kehao.netctoss.model.RoleModuleKey" >
+    <id column="ROLE_ID" property="roleId" jdbcType="DECIMAL" />
+    <id column="MODULE_ID" property="moduleId" jdbcType="DECIMAL" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="org.kehao.netctoss.model.RoleModuleKey" >
+    delete from ROLE_MODULE
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+      and MODULE_ID = #{moduleId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="org.kehao.netctoss.model.RoleModuleKey" >
+    insert into ROLE_MODULE (ROLE_ID, MODULE_ID)
+    values (#{roleId,jdbcType=DECIMAL}, #{moduleId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="org.kehao.netctoss.model.RoleModuleKey" >
+    insert into ROLE_MODULE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="moduleId != null" >
+        MODULE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=DECIMAL},
+      </if>
+      <if test="moduleId != null" >
+        #{moduleId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

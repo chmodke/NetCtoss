@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kehao.netctoss.dao.FunctionInfoMapper" >
+  <resultMap id="BaseResultMap" type="org.kehao.netctoss.model.FunctionInfo" >
+    <id column="FUNCTION_ID" property="functionId" jdbcType="DECIMAL" />
+    <result column="FUNCTION_CODE" property="functionCode" jdbcType="VARCHAR" />
+    <result column="MOUDLE_ID" property="moudleId" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FUNCTION_ID, FUNCTION_CODE, MOUDLE_ID, NAME, URL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from FUNCTION_INFO
+    where FUNCTION_ID = #{functionId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from FUNCTION_INFO
+    where FUNCTION_ID = #{functionId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="org.kehao.netctoss.model.FunctionInfo" >
+    insert into FUNCTION_INFO (FUNCTION_ID, FUNCTION_CODE, MOUDLE_ID, 
+      NAME, URL)
+    values (#{functionId,jdbcType=DECIMAL}, #{functionCode,jdbcType=VARCHAR}, #{moudleId,jdbcType=DECIMAL}, 
+      #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.kehao.netctoss.model.FunctionInfo" >
+    insert into FUNCTION_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="functionId != null" >
+        FUNCTION_ID,
+      </if>
+      <if test="functionCode != null" >
+        FUNCTION_CODE,
+      </if>
+      <if test="moudleId != null" >
+        MOUDLE_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="functionId != null" >
+        #{functionId,jdbcType=DECIMAL},
+      </if>
+      <if test="functionCode != null" >
+        #{functionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="moudleId != null" >
+        #{moudleId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.kehao.netctoss.model.FunctionInfo" >
+    update FUNCTION_INFO
+    <set >
+      <if test="functionCode != null" >
+        FUNCTION_CODE = #{functionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="moudleId != null" >
+        MOUDLE_ID = #{moudleId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FUNCTION_ID = #{functionId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.kehao.netctoss.model.FunctionInfo" >
+    update FUNCTION_INFO
+    set FUNCTION_CODE = #{functionCode,jdbcType=VARCHAR},
+      MOUDLE_ID = #{moudleId,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR}
+    where FUNCTION_ID = #{functionId,jdbcType=DECIMAL}
+  </update>
+</mapper>

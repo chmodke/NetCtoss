@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kehao.netctoss.dao.BillItemMapper" >
+  <resultMap id="BaseResultMap" type="org.kehao.netctoss.model.BillItem" >
+    <id column="ITEM_ID" property="itemId" jdbcType="DECIMAL" />
+    <result column="BILL_ID" property="billId" jdbcType="DECIMAL" />
+    <result column="SERVICE_ID" property="serviceId" jdbcType="DECIMAL" />
+    <result column="COST" property="cost" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ITEM_ID, BILL_ID, SERVICE_ID, COST
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from BILL_ITEM
+    where ITEM_ID = #{itemId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from BILL_ITEM
+    where ITEM_ID = #{itemId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="org.kehao.netctoss.model.BillItem" >
+    insert into BILL_ITEM (ITEM_ID, BILL_ID, SERVICE_ID, 
+      COST)
+    values (#{itemId,jdbcType=DECIMAL}, #{billId,jdbcType=DECIMAL}, #{serviceId,jdbcType=DECIMAL}, 
+      #{cost,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="org.kehao.netctoss.model.BillItem" >
+    insert into BILL_ITEM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" >
+        ITEM_ID,
+      </if>
+      <if test="billId != null" >
+        BILL_ID,
+      </if>
+      <if test="serviceId != null" >
+        SERVICE_ID,
+      </if>
+      <if test="cost != null" >
+        COST,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" >
+        #{itemId,jdbcType=DECIMAL},
+      </if>
+      <if test="billId != null" >
+        #{billId,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=DECIMAL},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.kehao.netctoss.model.BillItem" >
+    update BILL_ITEM
+    <set >
+      <if test="billId != null" >
+        BILL_ID = #{billId,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceId != null" >
+        SERVICE_ID = #{serviceId,jdbcType=DECIMAL},
+      </if>
+      <if test="cost != null" >
+        COST = #{cost,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ITEM_ID = #{itemId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.kehao.netctoss.model.BillItem" >
+    update BILL_ITEM
+    set BILL_ID = #{billId,jdbcType=DECIMAL},
+      SERVICE_ID = #{serviceId,jdbcType=DECIMAL},
+      COST = #{cost,jdbcType=DECIMAL}
+    where ITEM_ID = #{itemId,jdbcType=DECIMAL}
+  </update>
+</mapper>

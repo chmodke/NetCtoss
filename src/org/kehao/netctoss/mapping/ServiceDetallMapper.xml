@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kehao.netctoss.dao.ServiceDetallMapper" >
+  <resultMap id="BaseResultMap" type="org.kehao.netctoss.model.ServiceDetall" >
+    <id column="DETAIL_ID" property="detailId" jdbcType="DECIMAL" />
+    <result column="SERVICE_ID" property="serviceId" jdbcType="DECIMAL" />
+    <result column="CLIENT_HOST" property="clientHost" jdbcType="VARCHAR" />
+    <result column="OS_USERNAME" property="osUsername" jdbcType="VARCHAR" />
+    <result column="PID" property="pid" jdbcType="DECIMAL" />
+    <result column="LOGIN_TIME" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="LOGOUT_TIME" property="logoutTime" jdbcType="TIMESTAMP" />
+    <result column="DURATION" property="duration" jdbcType="DECIMAL" />
+    <result column="COST" property="cost" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DETAIL_ID, SERVICE_ID, CLIENT_HOST, OS_USERNAME, PID, LOGIN_TIME, LOGOUT_TIME, DURATION, 
+    COST
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SERVICE_DETALL
+    where DETAIL_ID = #{detailId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SERVICE_DETALL
+    where DETAIL_ID = #{detailId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="org.kehao.netctoss.model.ServiceDetall" >
+    insert into SERVICE_DETALL (DETAIL_ID, SERVICE_ID, CLIENT_HOST, 
+      OS_USERNAME, PID, LOGIN_TIME, 
+      LOGOUT_TIME, DURATION, COST
+      )
+    values (#{detailId,jdbcType=DECIMAL}, #{serviceId,jdbcType=DECIMAL}, #{clientHost,jdbcType=VARCHAR}, 
+      #{osUsername,jdbcType=VARCHAR}, #{pid,jdbcType=DECIMAL}, #{loginTime,jdbcType=TIMESTAMP}, 
+      #{logoutTime,jdbcType=TIMESTAMP}, #{duration,jdbcType=DECIMAL}, #{cost,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.kehao.netctoss.model.ServiceDetall" >
+    insert into SERVICE_DETALL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        DETAIL_ID,
+      </if>
+      <if test="serviceId != null" >
+        SERVICE_ID,
+      </if>
+      <if test="clientHost != null" >
+        CLIENT_HOST,
+      </if>
+      <if test="osUsername != null" >
+        OS_USERNAME,
+      </if>
+      <if test="pid != null" >
+        PID,
+      </if>
+      <if test="loginTime != null" >
+        LOGIN_TIME,
+      </if>
+      <if test="logoutTime != null" >
+        LOGOUT_TIME,
+      </if>
+      <if test="duration != null" >
+        DURATION,
+      </if>
+      <if test="cost != null" >
+        COST,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        #{detailId,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=DECIMAL},
+      </if>
+      <if test="clientHost != null" >
+        #{clientHost,jdbcType=VARCHAR},
+      </if>
+      <if test="osUsername != null" >
+        #{osUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=DECIMAL},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutTime != null" >
+        #{logoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=DECIMAL},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.kehao.netctoss.model.ServiceDetall" >
+    update SERVICE_DETALL
+    <set >
+      <if test="serviceId != null" >
+        SERVICE_ID = #{serviceId,jdbcType=DECIMAL},
+      </if>
+      <if test="clientHost != null" >
+        CLIENT_HOST = #{clientHost,jdbcType=VARCHAR},
+      </if>
+      <if test="osUsername != null" >
+        OS_USERNAME = #{osUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        PID = #{pid,jdbcType=DECIMAL},
+      </if>
+      <if test="loginTime != null" >
+        LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutTime != null" >
+        LOGOUT_TIME = #{logoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duration != null" >
+        DURATION = #{duration,jdbcType=DECIMAL},
+      </if>
+      <if test="cost != null" >
+        COST = #{cost,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DETAIL_ID = #{detailId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.kehao.netctoss.model.ServiceDetall" >
+    update SERVICE_DETALL
+    set SERVICE_ID = #{serviceId,jdbcType=DECIMAL},
+      CLIENT_HOST = #{clientHost,jdbcType=VARCHAR},
+      OS_USERNAME = #{osUsername,jdbcType=VARCHAR},
+      PID = #{pid,jdbcType=DECIMAL},
+      LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      LOGOUT_TIME = #{logoutTime,jdbcType=TIMESTAMP},
+      DURATION = #{duration,jdbcType=DECIMAL},
+      COST = #{cost,jdbcType=DECIMAL}
+    where DETAIL_ID = #{detailId,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kehao.netctoss.dao.ServiceMapper" >
+  <resultMap id="BaseResultMap" type="org.kehao.netctoss.model.Service" >
+    <id column="SERVICE_ID" property="serviceId" jdbcType="DECIMAL" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="DECIMAL" />
+    <result column="UNIX_HOST" property="unixHost" jdbcType="VARCHAR" />
+    <result column="OS_USERNAME" property="osUsername" jdbcType="VARCHAR" />
+    <result column="LOGIN_PASSWD" property="loginPasswd" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="PAUSE_DATE" property="pauseDate" jdbcType="TIMESTAMP" />
+    <result column="CLOSE_DATE" property="closeDate" jdbcType="TIMESTAMP" />
+    <result column="COST_ID" property="costId" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERVICE_ID, ACCOUNT_ID, UNIX_HOST, OS_USERNAME, LOGIN_PASSWD, STATUS, CREATE_DATE, 
+    PAUSE_DATE, CLOSE_DATE, COST_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SERVICE
+    where SERVICE_ID = #{serviceId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SERVICE
+    where SERVICE_ID = #{serviceId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="org.kehao.netctoss.model.Service" >
+    insert into SERVICE (SERVICE_ID, ACCOUNT_ID, UNIX_HOST, 
+      OS_USERNAME, LOGIN_PASSWD, STATUS, 
+      CREATE_DATE, PAUSE_DATE, CLOSE_DATE, 
+      COST_ID)
+    values (#{serviceId,jdbcType=DECIMAL}, #{accountId,jdbcType=DECIMAL}, #{unixHost,jdbcType=VARCHAR}, 
+      #{osUsername,jdbcType=VARCHAR}, #{loginPasswd,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{pauseDate,jdbcType=TIMESTAMP}, #{closeDate,jdbcType=TIMESTAMP}, 
+      #{costId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="org.kehao.netctoss.model.Service" >
+    insert into SERVICE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceId != null" >
+        SERVICE_ID,
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="unixHost != null" >
+        UNIX_HOST,
+      </if>
+      <if test="osUsername != null" >
+        OS_USERNAME,
+      </if>
+      <if test="loginPasswd != null" >
+        LOGIN_PASSWD,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="pauseDate != null" >
+        PAUSE_DATE,
+      </if>
+      <if test="closeDate != null" >
+        CLOSE_DATE,
+      </if>
+      <if test="costId != null" >
+        COST_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=DECIMAL},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=DECIMAL},
+      </if>
+      <if test="unixHost != null" >
+        #{unixHost,jdbcType=VARCHAR},
+      </if>
+      <if test="osUsername != null" >
+        #{osUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPasswd != null" >
+        #{loginPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pauseDate != null" >
+        #{pauseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closeDate != null" >
+        #{closeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="costId != null" >
+        #{costId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.kehao.netctoss.model.Service" >
+    update SERVICE
+    <set >
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=DECIMAL},
+      </if>
+      <if test="unixHost != null" >
+        UNIX_HOST = #{unixHost,jdbcType=VARCHAR},
+      </if>
+      <if test="osUsername != null" >
+        OS_USERNAME = #{osUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPasswd != null" >
+        LOGIN_PASSWD = #{loginPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pauseDate != null" >
+        PAUSE_DATE = #{pauseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closeDate != null" >
+        CLOSE_DATE = #{closeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="costId != null" >
+        COST_ID = #{costId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SERVICE_ID = #{serviceId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.kehao.netctoss.model.Service" >
+    update SERVICE
+    set ACCOUNT_ID = #{accountId,jdbcType=DECIMAL},
+      UNIX_HOST = #{unixHost,jdbcType=VARCHAR},
+      OS_USERNAME = #{osUsername,jdbcType=VARCHAR},
+      LOGIN_PASSWD = #{loginPasswd,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      PAUSE_DATE = #{pauseDate,jdbcType=TIMESTAMP},
+      CLOSE_DATE = #{closeDate,jdbcType=TIMESTAMP},
+      COST_ID = #{costId,jdbcType=DECIMAL}
+    where SERVICE_ID = #{serviceId,jdbcType=DECIMAL}
+  </update>
+</mapper>

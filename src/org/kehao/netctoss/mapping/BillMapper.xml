@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kehao.netctoss.dao.BillMapper" >
+  <resultMap id="BaseResultMap" type="org.kehao.netctoss.model.Bill" >
+    <id column="BILL_ID" property="billId" jdbcType="DECIMAL" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="DECIMAL" />
+    <result column="BILL_MONTH" property="billMonth" jdbcType="CHAR" />
+    <result column="COST" property="cost" jdbcType="DECIMAL" />
+    <result column="PAYMENT_MODE" property="paymentMode" jdbcType="CHAR" />
+    <result column="PAY_STATE" property="payState" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BILL_ID, ACCOUNT_ID, BILL_MONTH, COST, PAYMENT_MODE, PAY_STATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from BILL
+    where BILL_ID = #{billId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from BILL
+    where BILL_ID = #{billId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="org.kehao.netctoss.model.Bill" >
+    insert into BILL (BILL_ID, ACCOUNT_ID, BILL_MONTH, 
+      COST, PAYMENT_MODE, PAY_STATE
+      )
+    values (#{billId,jdbcType=DECIMAL}, #{accountId,jdbcType=DECIMAL}, #{billMonth,jdbcType=CHAR}, 
+      #{cost,jdbcType=DECIMAL}, #{paymentMode,jdbcType=CHAR}, #{payState,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.kehao.netctoss.model.Bill" >
+    insert into BILL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="billId != null" >
+        BILL_ID,
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="billMonth != null" >
+        BILL_MONTH,
+      </if>
+      <if test="cost != null" >
+        COST,
+      </if>
+      <if test="paymentMode != null" >
+        PAYMENT_MODE,
+      </if>
+      <if test="payState != null" >
+        PAY_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="billId != null" >
+        #{billId,jdbcType=DECIMAL},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=DECIMAL},
+      </if>
+      <if test="billMonth != null" >
+        #{billMonth,jdbcType=CHAR},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentMode != null" >
+        #{paymentMode,jdbcType=CHAR},
+      </if>
+      <if test="payState != null" >
+        #{payState,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.kehao.netctoss.model.Bill" >
+    update BILL
+    <set >
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=DECIMAL},
+      </if>
+      <if test="billMonth != null" >
+        BILL_MONTH = #{billMonth,jdbcType=CHAR},
+      </if>
+      <if test="cost != null" >
+        COST = #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentMode != null" >
+        PAYMENT_MODE = #{paymentMode,jdbcType=CHAR},
+      </if>
+      <if test="payState != null" >
+        PAY_STATE = #{payState,jdbcType=CHAR},
+      </if>
+    </set>
+    where BILL_ID = #{billId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.kehao.netctoss.model.Bill" >
+    update BILL
+    set ACCOUNT_ID = #{accountId,jdbcType=DECIMAL},
+      BILL_MONTH = #{billMonth,jdbcType=CHAR},
+      COST = #{cost,jdbcType=DECIMAL},
+      PAYMENT_MODE = #{paymentMode,jdbcType=CHAR},
+      PAY_STATE = #{payState,jdbcType=CHAR}
+    where BILL_ID = #{billId,jdbcType=DECIMAL}
+  </update>
+</mapper>

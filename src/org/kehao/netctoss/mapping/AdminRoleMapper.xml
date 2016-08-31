@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kehao.netctoss.dao.AdminRoleMapper" >
+  <resultMap id="BaseResultMap" type="org.kehao.netctoss.model.AdminRoleKey" >
+    <id column="ADMIN_ID" property="adminId" jdbcType="DECIMAL" />
+    <id column="ROLE_ID" property="roleId" jdbcType="DECIMAL" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="org.kehao.netctoss.model.AdminRoleKey" >
+    delete from ADMIN_ROLE
+    where ADMIN_ID = #{adminId,jdbcType=DECIMAL}
+      and ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="org.kehao.netctoss.model.AdminRoleKey" >
+    insert into ADMIN_ROLE (ADMIN_ID, ROLE_ID)
+    values (#{adminId,jdbcType=DECIMAL}, #{roleId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="org.kehao.netctoss.model.AdminRoleKey" >
+    insert into ADMIN_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminId != null" >
+        ADMIN_ID,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminId != null" >
+        #{adminId,jdbcType=DECIMAL},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>
